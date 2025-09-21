@@ -37,4 +37,4 @@ Siga os passos abaixo para rodar o projeto em sua máquina local:
 4.  **Acesse o sistema:**
     Abra o seu navegador e acesse a URL: `http://localhost:8000`
 
-    ## ToADD (estrutura do projeto)
+## ToADD (estrutura do projeto)
