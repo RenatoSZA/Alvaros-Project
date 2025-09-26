@@ -38,3 +38,4 @@ Siga os passos abaixo para rodar o projeto em sua máquina local:
     Abra o seu navegador e acesse a URL: `http://localhost:8000`
 
 ## ToADD (estrutura do projeto)
+# EU, ESTEVÃO EMANUEL, SOU GAY.
