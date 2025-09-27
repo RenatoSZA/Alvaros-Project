@@ -38,3 +38,13 @@ Siga os passos abaixo para rodar o projeto em sua máquina local:
     Abra o seu navegador e acesse a URL: `http://localhost:8000`
 
 ## ToADD (estrutura do projeto)
+
+## Authors
+
+
+- [@RenatoSZA](https://www.github.com/RenatoSZA)
+- [@StevegitXz](https://www.github.com/StevegitXz)
+- [@alineaguiargondim](https://www.github.com/alineaguiargondim)
+- [@PedroL-Melo](https://www.github.com/PedroL-Melo)
+- [@Maria_Santa22](https://www.github.com/Maria-Santa22)
+- [@estherferrari29-collab](https://www.github.com/estherferrari29-collab)
