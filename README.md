@@ -39,8 +39,7 @@ Siga os passos abaixo para rodar o projeto em sua máquina local:
 
 ## ToADD (estrutura do projeto)
 
-## Authors
-
+## Autores
 
 - [@RenatoSZA](https://www.github.com/RenatoSZA)
 - [@StevegitXz](https://www.github.com/StevegitXz)
