@@ -1,0 +1,204 @@
+/* --- Configurações Globais e Variáveis --- */
+:root {
+    --black: #0F0F11;
+    --dark-gray: #1C1B22;
+    --gray: #A9A9B3;
+    --white: #F8F9FA;
+    --purple: #9D4EDD;
+    --light-purple: #C77DFF;
+    --orange: #FF6B35;
+    --accent-gradient: linear-gradient(90deg, #9D4EDD, #FF6B35);
+    --highlight: #F3E8FF;
+
+    --font-main: 'Montserrat', sans-serif;
+
+    /* Variáveis Específicas */
+    --login-bg: var(--black);
+    --input-bg: var(--dark-gray);
+    --gray-text: var(--gray);
+}
+
+/* --- Reset e Base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--white);
+    background-color: var(--black);
+    line-height: 1.6;
+    overflow: hidden;
+}
+
+/* --- Layout Principal --- */
+.login-wrapper {
+    display: grid;
+    grid-template-columns: 45% 55%; 
+    min-height: 100vh;
+    width: 100vw;
+}
+
+/* --- Coluna da Esquerda (Formulário) --- */
+.login-form-container {
+    background-color: var(--login-bg);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 5rem 3rem;
+    height: 100%;
+    overflow-y: auto; 
+}
+
+.login-content {
+    max-width: 400px;
+    width: 100%;
+}
+
+.login-content h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 2.5rem;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- Estilos do Formulário --- */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1.25rem 1rem;
+    border: 2px solid var(--dark-gray);
+    border-radius: 8px;
+    background-color: var(--input-bg);
+    font-family: var(--font-main);
+    font-size: 1rem;
+    color: var(--white);
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--light-purple);
+}
+
+/* Botão de login com gradiente */
+.btn-login {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
+    background: var(--accent-gradient);
+    color: var(--white);
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin-top: 1rem;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+}
+
+/* --- Login Social --- */
+.social-login {
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
+.social-icons-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    background-color: var(--dark-gray);
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+}
+
+.social-icons-container img {
+    width: 30px;
+}
+
+.social-icons-container a {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.social-icons-container a:hover {
+    transform: scale(1.1);
+}
+
+/* --- Rodapé do Formulário --- */
+.login-footer-text {
+    margin-top: 4rem;
+    font-size: 0.9rem;
+    color: var(--gray-text);
+    height: max-content;
+}
+
+.login-footer-text .caption {
+    font-size: 0.75rem;
+    margin-top: 2rem;
+    color: var(--gray-text);
+    opacity: 0.7;
+}
+
+/* --- Coluna da Direita (Imagem) --- */
+.login-image-container {
+    position: relative;
+    background-image: url('/assets/img/log-background.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--black);
+}
+
+/* O "Blob" - Mantido branco para contraste, como na loja */
+.blob-shape {
+    width: 90%;
+    max-width: 550px;
+    height: 550px;
+    background-color: var(--white);
+    border-radius: 41% 59% 45% 55% / 30% 39% 61% 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    animation: blobMorph 8s infinite alternate;
+}
+
+@keyframes blobMorph {
+    0% {
+        border-radius: 41% 59% 45% 55% / 30% 39% 61% 70%;
+    }
+    100% {
+        border-radius: 50% 50% 33% 67% / 56% 40% 60% 44%;
+    }
+}
+
+.blob-shape h2 {
+    color: var(--black); /* Texto preto no blob branco */
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+}

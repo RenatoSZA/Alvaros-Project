@@ -1,0 +1,506 @@
+/* --- Configurações Globais e Variáveis --- */
+:root {
+    --black: #0F0F11;
+    --dark-gray: #1C1B22;
+    --gray: #A9A9B3;
+    --white: #F8F9FA;
+    --purple: #9D4EDD;
+    --light-purple: #C77DFF;
+    --orange: #FF6B35;
+    --accent-gradient: linear-gradient(90deg, #9D4EDD, #FF6B35);
+    --highlight: #F3E8FF;
+    --font-main: 'Montserrat', sans-serif;
+}
+
+/* --- Reset e Base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: var(--font-main);
+    color: var(--white);
+    background-color: var(--black);
+    line-height: 1.6;
+}
+
+/* --- Classes Utilitárias --- */
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+}
+
+/* Botão Primário com Gradiente */
+.btn-primary {
+    background: var(--accent-gradient);
+    color: var(--white);
+}
+
+.btn-purple {
+    background-color: var(--purple);
+    color: var(--white);
+}
+.btn-purple:hover {
+    background-color: var(--light-purple);
+}
+
+.btn-terracotta { /* Mapeado para Laranja/Vermelho */
+    background-color: var(--orange);
+    color: var(--white);
+}
+.btn-terracotta:hover {
+    background-color: var(--red); /* Usando o --red do .css anterior */
+}
+
+
+.btn-dark {
+    background-color: var(--dark-gray);
+    color: var(--white);
+}
+.btn-dark:hover {
+    background-color: var(--black);
+    border: 1px solid var(--dark-gray);
+}
+
+
+/* --- Cabeçalho e Navegação --- */
+.header-hero-bg {
+    background-color: var(--dark-gray);
+    padding-bottom: 4rem;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.logo img {
+    width: 280px;
+    filter: brightness(0) invert(1); /* Inverte o logo para branco */
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+}
+
+.nav-menu li {
+    margin-left: 2rem;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: var(--light-purple);
+}
+
+/* --- Hero --- */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 4rem;
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    background: var(--accent-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-inspiration {
+    max-width: 450px;
+    padding: 2rem;
+    background-color: var(--dark-gray);
+    border-radius: 12px;
+}
+
+.hero-inspiration h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--light-purple);
+    text-align: end;
+}
+
+.hero-inspiration p {
+    color: var(--gray);
+    text-align: end;
+}
+
+/* --- Seções de Informação --- */
+.info-section {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    padding: 6rem 0;
+}
+
+.info-section.reverse {
+    flex-direction: row-reverse;
+}
+
+.info-text h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--light-purple);
+    margin-bottom: 1.5rem;
+}
+
+.info-text p {
+    font-size: 1.1rem;
+    color: var(--gray);
+    max-width: 500px;
+}
+
+.info-image img {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* --- Planos --- */
+.plans-bg {
+    background-color: var(--dark-gray);
+    padding: 6rem 0;
+}
+
+.plans {
+    text-align: center;
+}
+
+.plans h2 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 3rem;
+}
+
+.highlight-pink { /* Renomeado para .highlight */
+    color: var(--light-purple);
+}
+
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.plan-card {
+    background-color: var(--black);
+    border: 2px solid var(--purple);
+    border-radius: 12px;
+    padding: 2.5rem;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.plan-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 25px rgba(157, 78, 221, 0.3);
+}
+
+.plan-card h3 {
+    font-size: 1.6rem;
+    color: var(--light-purple);
+    margin-bottom: 1.5rem;
+}
+
+.plan-card ul {
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.plan-card li {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    color: var(--gray);
+}
+
+.plan-card .price {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    background: var(--accent-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.plan-card .period {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* --- Unidades --- */
+.units {
+    padding: 6rem 0;
+    text-align: center;
+}
+
+.units h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--light-purple);
+    margin-bottom: 3rem;
+}
+
+.units-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.unit-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 500px;
+}
+
+.unit-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    filter: brightness(0.9);
+}
+
+.unit-card:hover img {
+    transform: scale(1.05);
+}
+
+.unit-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    color: var(--white);
+    text-align: left;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+}
+
+.unit-card-overlay h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--light-purple);
+}
+
+/* --- Loja --- */
+.shop-bg {
+    background-color: var(--black);
+    padding: 6rem 0;
+}
+
+.shop {
+    text-align: center;
+}
+
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1400px;
+}
+
+.shop h2 { /* Adicionado seletor .shop h2 */
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--light-purple);
+    margin-bottom: 3rem;
+}
+
+.shop-item {
+    text-align: center;
+}
+
+.shop-item img {
+    width: 100%;
+    min-width: 300px;
+    max-width: 350px;
+    height: 350px;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    background-color: var(--white);
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.shop-item img:hover {
+    transform: scale(1.05);
+}
+
+.shop-item h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+}
+
+.shop-item .price {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--gray);
+}
+
+/* --- Newsletter --- */
+.newsletter-bg {
+    background-color: var(--dark-gray);
+    padding: 6rem 0;
+}
+
+.newsletter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4rem;
+}
+
+.newsletter-text, .newsletter-form {
+    flex: 1;
+}
+
+.newsletter-text h2 {
+    font-size: 2.5rem;
+    color: var(--light-purple);
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.newsletter-text p {
+    font-size: 1.1rem;
+    color: var(--gray);
+    margin-bottom: 2rem;
+    max-width: 500px;
+}
+
+.social-icons a {
+    margin-right: 1rem;
+    color: var(--white);
+}
+
+.social-icons svg {
+    transition: opacity 0.2s;
+    stroke: var(--white);
+}
+
+.social-icons a:hover svg {
+    opacity: 0.7;
+    stroke: var(--light-purple);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--dark-gray);
+    border-radius: 8px;
+    background-color: var(--black);
+    color: var(--white);
+    font-family: var(--font-main);
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--light-purple);
+}
+
+
+/* --- Rodapé --- */
+.footer-bg {
+    background-color: var(--black);
+    padding: 4rem 0;
+    color: var(--gray);
+    border-top: 1px solid var(--dark-gray);
+}
+
+.footer {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 2rem;
+}
+
+.footer-column .logo {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.footer-column p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.footer-column h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--white);
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-column a {
+    font-size: 0.9rem;
+    color: var(--light-purple);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-column a:hover {
+    color: var(--orange);
+    text-decoration: underline;
+}

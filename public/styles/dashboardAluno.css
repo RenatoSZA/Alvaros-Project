@@ -1,0 +1,644 @@
+:root {
+    --black: #0F0F11;
+    --dark-gray: #1C1B22;
+    --medium-gray: #2A2930;
+    --gray: #A9A9B3;
+    --white: #F8F9FA;
+    --purple: #9D4EDD;
+    --light-purple: #C77DFF;
+    --orange: #FF6B35;
+    --red: #FF4B4B;
+    --green: #00CC66;
+    --accent-gradient: linear-gradient(90deg, #9D4EDD, #FF6B35);
+    --font-main: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--white);
+    background-color: var(--black);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    width: 100%;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- COMPONENTES DE BOTÃO --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: 0.25s ease;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--accent-gradient);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--gray);
+    color: var(--white);
+}
+
+.btn-outline:hover {
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+.btn-icon {
+    padding: 0.5rem;
+    border-radius: 50%;
+    background: var(--medium-gray);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-icon:hover {
+    background: var(--purple);
+}
+
+/* --- HEADER --- */
+.dashboard-header {
+    background-color: var(--dark-gray);
+    border-bottom: 1px solid var(--medium-gray);
+    padding: 1.5rem 0;
+    margin-bottom: 3rem;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--white);
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.back-link:hover {
+    color: var(--purple);
+}
+
+.welcome-text h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--light-purple);
+}
+
+.welcome-text p {
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.profile-pic {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--accent-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+/* --- PAINEL DE TREINOS --- */
+.training-panel {
+    margin-bottom: 3rem;
+}
+
+.training-panel h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: var(--light-purple);
+}
+
+.week-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.day-card {
+    background-color: var(--dark-gray);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--medium-gray);
+    border-top: 3px solid var(--purple);
+    transition: all 0.3s ease;
+}
+
+.day-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--purple);
+}
+
+.day-card h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.day-card h5 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--purple);
+    margin-bottom: 1rem;
+    min-height: 1.5em;
+}
+
+.preview-list {
+    list-style: none;
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+
+.preview-list li {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.preview-list li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--purple);
+    border-radius: 50%;
+}
+
+.btn-details {
+    width: 100%;
+    background-color: var(--medium-gray);
+    color: var(--white);
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.2s;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.btn-details:hover {
+    background-color: var(--purple);
+    border-color: var(--purple);
+}
+
+/* --- SEÇÃO DE PROGRESSO --- */
+.progress-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+@media(max-width: 900px) {
+    .progress-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+.section-card {
+    background-color: var(--dark-gray);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid var(--medium-gray);
+}
+
+.section-card h4 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: var(--light-purple);
+}
+
+.progress-item {
+    margin-bottom: 1.5rem;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 10px;
+    background-color: var(--black);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: var(--accent-gradient);
+    border-radius: 5px;
+    width: 0;
+    transition: width 1s ease-out;
+}
+
+.charts-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.chart-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chart-donut {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    border-radius: 50%;
+    background: conic-gradient(var(--purple) calc(var(--p) * 1%), var(--black) 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+    transition: background 1s ease-out;
+}
+
+.chart-donut::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: var(--dark-gray);
+    border-radius: 50%;
+}
+
+.chart-value {
+    position: relative;
+    z-index: 1;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.chart-meta {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+/* --- MODALS --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Modal Lista (Detalhes do Dia) */
+.modal-list-content {
+    background: var(--dark-gray);
+    width: 800px;
+    max-width: 95%;
+    max-height: 90vh;
+    border-radius: 16px;
+    border: 1px solid var(--medium-gray);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(20px);
+    transition: 0.3s;
+}
+
+.modal-overlay.active .modal-list-content {
+    transform: translateY(0);
+}
+
+/* Modal Execução (A tela solicitada) */
+.modal-exec-content {
+    background: var(--black);
+    width: 100%;
+    height: 100%;
+    /* Fullscreen mobile feel */
+    max-width: 600px;
+    max-height: 100vh;
+    /* Limit desktop */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-right: 1px solid var(--medium-gray);
+    border-left: 1px solid var(--medium-gray);
+}
+
+@media(min-width: 600px) {
+    .modal-exec-content {
+        height: 90vh;
+        border-radius: 16px;
+        margin-top: 2vh;
+    }
+}
+
+/* Estilos da Tela de Execução */
+.exec-header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--medium-gray);
+}
+
+.exec-progress {
+    background: var(--medium-gray);
+    height: 6px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.exec-progress-bar {
+    background: var(--green);
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s;
+}
+
+.exec-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.exec-image {
+    width: 100%;
+    height: 200px;
+    background: var(--medium-gray);
+    border-radius: 12px;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.exec-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.exec-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+.stat-box {
+    background: var(--dark-gray);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid var(--medium-gray);
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--gray);
+    text-transform: uppercase;
+}
+
+.stat-val {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.exec-notes {
+    background: rgba(157, 78, 221, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--purple);
+}
+
+.exec-notes h6 {
+    color: var(--light-purple);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.exec-notes p {
+    font-size: 0.9rem;
+    color: var(--white);
+    font-style: italic;
+}
+
+.exec-timer {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--dark-gray);
+    border-radius: 12px;
+    border: 1px solid var(--medium-gray);
+}
+
+.timer-display {
+    font-size: 3rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    margin-bottom: 1rem;
+    color: var(--white);
+}
+
+.timer-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.exec-footer {
+    padding: 1.5rem;
+    border-top: 1px solid var(--medium-gray);
+    background: var(--dark-gray);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.nav-controls {
+    display: flex;
+    justify-content: space-between;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: var(--gray);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-btn:hover {
+    color: var(--white);
+}
+
+/* Tabela do Modal Lista */
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.details-table th {
+    text-align: left;
+    color: var(--gray);
+    padding: 1rem;
+    border-bottom: 1px solid var(--medium-gray);
+    font-size: 0.9rem;
+}
+
+.details-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--medium-gray);
+    vertical-align: middle;
+}
+
+.details-table tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* --- PRINT STYLES --- */
+@media print {
+    body {
+        background-color: white;
+        color: black;
+    }
+
+    .dashboard-header,
+    .btn,
+    .modal-overlay {
+        display: none !important;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .week-grid {
+        display: block;
+    }
+
+    .day-card {
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+        page-break-inside: avoid;
+        box-shadow: none;
+        color: black;
+        background: white;
+    }
+
+    .day-card h5 {
+        color: #000;
+    }
+
+    .progress-section {
+        display: block;
+    }
+
+    .section-card {
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+        background: white;
+        color: black;
+    }
+
+    .chart-donut {
+        background: conic-gradient(#999 calc(var(--p) * 1%), #eee 0);
+    }
+
+    .chart-donut::after {
+        background: white;
+    }
+
+    .chart-value {
+        color: black;
+    }
+}

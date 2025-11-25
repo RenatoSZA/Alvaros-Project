@@ -1,0 +1,287 @@
+/* --- Configurações Globais e Variáveis --- */
+:root {
+    --black: #0F0F11;
+    --dark-gray: #1C1B22;
+    --gray: #A9A9B3;
+    --white: #F8F9FA;
+    --purple: #9D4EDD;
+    --light-purple: #C77DFF;
+    --orange: #FF6B35;
+    --accent-gradient: linear-gradient(90deg, #9D4EDD, #FF6B35);
+    --highlight: #F3E8FF;
+
+    --font-main: 'Montserrat', sans-serif;
+
+    /* Variáveis Específicas */
+    --input-bg: var(--dark-gray);
+    --placeholder-text: var(--gray);
+    --gray-text: var(--gray);
+}
+
+/* --- Reset e Base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--white);
+    background-color: var(--black);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* --- Layout Principal --- */
+.cadastro-wrapper {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+/* --- Coluna da Esquerda (Formulário) --- */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem 4rem;
+    min-height: 100vh;
+    overflow-y: auto;
+    background-color: var(--black);
+}
+
+.form-content {
+    max-width: 480px;
+    width: 100%;
+}
+
+.logo-link {
+    display: inline-block;
+    margin-bottom: 2rem; 
+    filter: brightness(0) invert(1); /* Inverte logo */
+}
+
+.form-content h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.form-content p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--gray-text);
+}
+
+.form-content .form-instruction {
+    font-weight: 500;
+    color: var(--white);
+    margin-top: 1.5rem; 
+    margin-bottom: 1.5rem;
+}
+
+/* --- Estilos do Formulário --- */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 1rem; 
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group input[type="email"] {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--dark-gray);
+    border-radius: 8px;
+    background-color: var(--input-bg);
+    font-family: var(--font-main);
+    font-size: 1rem;
+    color: var(--white);
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--light-purple);
+}
+
+/* Estilizando a cor do placeholder */
+::placeholder {
+    color: var(--placeholder-text);
+    opacity: 0.6; 
+}
+
+/* Botão de cadastro com gradiente */
+.btn-cadastrar {
+    padding: 1rem;
+    border-radius: 8px;
+    background: var(--accent-gradient);
+    color: var(--white);
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin-top: 1rem;
+}
+
+.btn-cadastrar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+}
+
+/* --- Rodapé do Formulário --- */
+.form-footer {
+    margin-top: 1.5rem; 
+}
+
+.terms {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.terms input[type="checkbox"] {
+    margin-top: 4px; 
+    width: 16px;
+    height: 16px;
+}
+
+.terms label {
+    font-size: 0.85rem;
+    color: var(--gray-text);
+    line-height: 1.5;
+}
+
+.terms a, .login-link a {
+    color: var(--light-purple);
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.terms a:hover, .login-link a:hover {
+    color: var(--orange);
+}
+
+.login-link {
+    font-size: 0.9rem;
+    color: var(--gray-text);
+}
+
+/* --- Coluna da Direita (Imagens) --- */
+.image-container {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 2rem; 
+    width: 100%; 
+    min-height: 100vh;
+    background-color: var(--dark-gray);
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    flex-grow: 1; 
+    max-height: 80vh; 
+    gap: 1.5rem; 
+    width: 100%;
+    max-width: 1000px;
+}
+
+.grid-panel {
+    position: relative;
+    overflow: hidden;
+    width: 100%; 
+    border-radius: 12px;
+    aspect-ratio: 3 / 4;
+}
+
+.grid-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    filter: brightness(0.9);
+}
+
+.overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--white);
+    font-size: 2.6rem;
+    font-weight: 900;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.image-caption {
+    width: 100%;
+    grid-column: 1 / -1;
+    color: var(--white);
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    grid-row: 2;
+    justify-self: center;
+    margin-top: -1rem;
+}
+
+.image-caption strong {
+    font-weight: 700;
+    color: var(--light-purple);
+}
+
+/* --- Responsividade --- */
+@media (max-width: 1200px) {
+    .cadastro-wrapper {
+        grid-template-columns: 50% 50%;
+    }
+    .image-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .grid-panel:last-of-type {
+        grid-column: 1 / 3;
+    }
+    .image-caption {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 800px) {
+    .cadastro-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .image-container {
+        display: none;
+    }
+    .form-container {
+        padding: 2rem;
+        min-height: 100vh;
+    }
+}
