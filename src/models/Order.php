@@ -9,7 +9,6 @@ class Order extends Model {
     protected float $total_value;
     protected string $status;
     
-    // Relacionamentos (Objetos aninhados)
     protected ?Delivery $delivery = null;
     protected array $items = [];
 
@@ -19,7 +18,6 @@ class Order extends Model {
         $this->status = 'Awaiting Payment';
     }
 
-    // Arrays complexos é melhor manipular com métodos explícitos
     public function addItem(OrderItem $item) {
         $this->items[] = $item;
     }

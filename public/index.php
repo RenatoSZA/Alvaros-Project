@@ -6,14 +6,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// --- AJUSTE DE FUSO HORÁRIO (ACRE) ---
-// Define o fuso para Rio Branco (UTC -5)
 date_default_timezone_set('America/Rio_branco');
 
-// --- CORREÇÃO DE CSS/IMAGENS (O SEGREDO) ---
-// Calcula a pasta raiz do projeto automaticamente
 $scriptDir = dirname($_SERVER['SCRIPT_NAME']);
-// Remove barras invertidas (coisa do Windows) e garante que não tem barra no final
 $baseUrl = rtrim(str_replace('\\', '/', $scriptDir), '/');
 define('BASE_URL', $baseUrl);
 

@@ -14,17 +14,14 @@ class DashboardController {
         require __DIR__ . '/../../views/dashboard_student.php';
     }
 
-    // --- NOVA API JSON ---
     public function getStudentData() {
-        // Verifica login
         if (!SessionManager::isLogged()) {
             http_response_code(401);
             echo json_encode(['error' => 'Não autorizado']);
             exit;
         }
 
-        // Simulação dos dados que viriam do WorkoutMapper/Banco de Dados
-        // Futuramente: $plan = $workoutMapper->getPlanForStudent($id);
+        //simulação pra apresentação
         
         $data = [
             'user' => [
@@ -53,7 +50,6 @@ class DashboardController {
             ]
         ];
 
-        // Retorna JSON para o JavaScript
         header('Content-Type: application/json');
         echo json_encode($data);
         exit;

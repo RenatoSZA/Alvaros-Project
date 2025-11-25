@@ -1,4 +1,5 @@
 <?php
+//carrinho simples so pra apresentação
 namespace App\Services;
 
 use Core\SessionManager;

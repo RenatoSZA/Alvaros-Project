@@ -7,7 +7,6 @@ use PDOException;
 class Database {
     private static ?PDO $instance = null;
 
-    // Configurações
     private const DB_HOST = 'localhost';
     private const DB_NAME = 'lumi_gym';
     private const DB_USER = 'root';
@@ -24,8 +23,6 @@ class Database {
                 self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 self::$instance->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-                // --- FIX DO FUSO HORÁRIO NO BANCO ---
-                // Força o banco a trabalhar em UTC-5 (Acre)
                 self::$instance->exec("SET time_zone = '-05:00'");
                 
             } catch (PDOException $e) {

@@ -1,34 +1,28 @@
-/* --- VARIÁVEIS GLOBAIS --- */
-let db = null; // Agora começa vazio e é preenchido pela API
+//globais
+let db = null;
 let currentDayKey = null;
 let currentExerciseIndex = 0;
 let timerInterval = null;
 let timeLeft = 0;
 let timerRunning = false;
 
-// Inicialização
 document.addEventListener('DOMContentLoaded', () => {
     fetchStudentData();
     
-    // Inicializa ícones se a biblioteca estiver carregada
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
 });
 
-/* --- COMUNICAÇÃO COM O BACKEND --- */
 async function fetchStudentData() {
     try {
-        // Chama a rota que criamos no PHP
-        // OBS: Se seu site estiver em subpasta, ajuste para 'projects/LumiG/public/api/aluno-data'
-        // Mas como definimos BASE_URL no HTML, podemos usar caminho relativo se o JS estiver na mesma origem
+
         const response = await fetch('api/aluno-data'); 
         
         if (!response.ok) throw new Error('Erro ao carregar dados');
 
         db = await response.json();
         
-        // Só carrega a tela depois de receber os dados
         loadDashboard();
         
     } catch (error) {
@@ -37,23 +31,19 @@ async function fetchStudentData() {
     }
 }
 
-/* --- RENDERIZAÇÃO DO DASHBOARD --- */
 function loadDashboard() {
     if (!db) return;
 
-    // Header Info
     const firstName = db.user.name.split(' ')[0];
     document.getElementById('user-greeting').innerText = `Bom dia, ${firstName}!`;
     document.getElementById('current-date').innerText = db.user.lastAccess;
     document.getElementById('user-initials').innerText = db.user.name.substring(0, 2).toUpperCase();
     
-    // Render Grid Semanal
     const grid = document.getElementById('week-grid');
     const days = { seg:'Segunda', ter:'Terça', qua:'Quarta', qui:'Quinta', sex:'Sexta', sab:'Sábado' };
     
     if (grid) {
         grid.innerHTML = Object.keys(days).map(key => {
-            // Verifica se existe o dia no plano, senão cria vazio
             const dayData = db.plan[key] || { title: 'Descanso', exercises: [] };
             const count = dayData.exercises.length;
             const exName = count > 0 ? dayData.exercises[0].name : 'Descanso';
@@ -72,7 +62,6 @@ function loadDashboard() {
         }).join('');
     }
 
-    // Render Stats (Gráficos)
     const freq = db.stats.freq || 0;
     const target = db.stats.target || 1;
     const freqPercent = Math.min((freq / target) * 100, 100);
@@ -100,7 +89,6 @@ function loadDashboard() {
     }, 500);
 }
 
-/* --- LÓGICA MODAL LISTA --- */
 function openList(key) {
     if (!db) return;
     currentDayKey = key;
@@ -137,7 +125,6 @@ function closeListModal() {
     document.getElementById('modal-list').classList.remove('active');
 }
 
-/* --- LÓGICA DE EXECUÇÃO --- */
 function startWorkout(startIndex = 0) {
     const data = db.plan[currentDayKey];
     if(!data || data.exercises.length === 0) return alert("Não há exercícios para iniciar.");
@@ -152,7 +139,6 @@ function loadExerciseScreen() {
     const list = db.plan[currentDayKey].exercises;
     const ex = list[currentExerciseIndex];
 
-    // Atualiza UI
     document.getElementById('exec-step').innerText = currentExerciseIndex + 1;
     document.getElementById('exec-total').innerText = list.length;
     
@@ -161,7 +147,6 @@ function loadExerciseScreen() {
     
     document.getElementById('exec-name').innerText = ex.name;
     
-    // Tratamento de Imagem
     const imgEl = document.getElementById('exec-img');
     const placeholderEl = document.getElementById('exec-img-placeholder');
     
@@ -184,8 +169,7 @@ function loadExerciseScreen() {
     document.getElementById('exec-load').innerText = ex.load + 'kg';
     document.getElementById('exec-note').innerText = ex.note || "Sem observações.";
 
-    // Configura Timer
-    timeLeft = ex.rest || 60; // Default 60s se não vier do banco
+    timeLeft = ex.rest || 60;
     updateTimerDisplay();
     pauseTimer(); 
 }
@@ -198,7 +182,6 @@ function closeExecutionModal() {
     }
 }
 
-/* --- CONTROLES DE FLUXO --- */
 function finishSet() {
     const btn = document.querySelector('.exec-footer .btn-primary');
     const originalText = btn.innerHTML;
