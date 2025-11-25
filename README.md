@@ -2,20 +2,20 @@
 
 Este projeto é uma plataforma completa de gerenciamento para academias (Luminous Gym), desenvolvida com uma arquitetura **MVC (Model-View-Controller)** personalizada. O sistema integra controle de alunos, gestão de treinos com execução em tempo real, e um módulo de e-commerce para venda de produtos.
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
-### 🏋️ Módulo de Treino & Alunos
+### Módulo de Treino & Alunos
 * **Autenticação Segura:** Login e Cadastro com criptografia de senha (hash).
 * **Dashboard do Aluno:** Visualização rápida de treinos semanais, frequência e estatísticas.
 * **Execução de Treino:** Interface interativa para o aluno realizar o treino, com cronômetro de descanso e checklist de exercícios.
 * **Gestão de Planos:** Professores podem montar fichas de treino personalizadas (CRUD).
 
-### 🛒 Módulo E-commerce (Loja)
+### Módulo E-commerce (Loja)
 * **Catálogo de Produtos:** Visualização de suplementos e equipamentos.
 * **Carrinho de Compras:** Gestão de itens na sessão antes da compra.
 * **Pedidos:** Registro de vendas com baixa automática de estoque.
 
-### ⚙️ Backend & Arquitetura
+### Backend & Arquitetura
 * **Router Personalizado:** Sistema de rotas amigáveis (ex: `/dashboard`, `/loja`).
 * **Data Mapper Pattern:** Camada de persistência isolada para comunicação com o Banco de Dados.
 * **Métodos Mágicos:** Uso de `__get` e `__set` para modelos de dados limpos.
@@ -23,7 +23,7 @@ Este projeto é uma plataforma completa de gerenciamento para academias (Luminou
 
 ---
 
-## 🛠 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 * **Backend:** PHP 8+ (Orientado a Objetos, PDO, MVC).
 * **Banco de Dados:** MariaDB / MySQL.
@@ -33,7 +33,7 @@ Este projeto é uma plataforma completa de gerenciamento para academias (Luminou
 
 ---
 
-## 📂 Estrutura do Projeto
+## Estrutura do Projeto
 
 O projeto segue uma estrutura MVC estrita para garantir escalabilidade e manutenção:
 
