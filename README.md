@@ -53,7 +53,7 @@ O projeto segue uma estrutura MVC estrita para garantir escalabilidade e manuten
 │   ├── /Models          # Entidades de negócio (Student, Order, Product)
 │   └── /Services        # Regras de negócio complexas (CartService)
 └── /views               # Telas da aplicação (Arquivos PHP/HTML)
-
+```
 
 ## Autores
 
