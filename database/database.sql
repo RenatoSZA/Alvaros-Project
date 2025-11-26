@@ -1,5 +1,5 @@
 CREATE DATABASE IF NOT EXISTS lumi_gym CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE gym_db;
+USE lumi_gym;
 
 CREATE TABLE students (
     id INT AUTO_INCREMENT PRIMARY KEY,
