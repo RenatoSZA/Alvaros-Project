@@ -8,6 +8,8 @@ class Product extends Model {
     protected string $name;
     protected float $price;
     protected int $stock_quantity;
+    protected ?string $description = null;
+    protected ?string $image_url = null;
 
     public function __construct(string $name, float $price, int $stock) {
         $this->name = $name;
@@ -16,4 +18,8 @@ class Product extends Model {
     }
 
     public function setId(int $id) { $this->id = $id; }
+    
+    public function setDescription(?string $desc) { $this->description = $desc; }
+    
+    public function setImageUrl(?string $url) { $this->image_url = $url; }
 }

@@ -1,5 +1,4 @@
 <?php
-//carrinho simples so pra apresentação
 namespace App\Services;
 
 use Core\SessionManager;
@@ -21,6 +20,19 @@ class CartService {
         }
         
         SessionManager::set('cart', $cart);
+    }
+
+    public function removeOne(int $productId) {
+        $cart = SessionManager::get('cart') ?? [];
+        
+        if (isset($cart[$productId])) {
+            $cart[$productId]['qty']--;
+            
+            if ($cart[$productId]['qty'] <= 0) {
+                unset($cart[$productId]);
+            }
+            SessionManager::set('cart', $cart);
+        }
     }
 
     public function getItems(): array {

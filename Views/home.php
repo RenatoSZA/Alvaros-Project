@@ -21,9 +21,14 @@
                 <li><a href="#">Menu</a></li>
                 <li><a href="#">Planos</a></li>
                 <li><a href="#">Unidades</a></li>
-                <li><a href="<?= BASE_URL ?>/dashboard">Area do Aluno</a></li>
-                <li><a href="<?= BASE_URL ?>/loja">Loja</a></li>
-                <li><a href="<?= BASE_URL ?>/login" style="font-weight:bold; color:var(--purple);">Entrar</a></li>
+                
+                <?php if (\Core\SessionManager::isLogged()): ?>
+                    <li><a href="<?= BASE_URL ?>/dashboard">Dashboard</a></li>
+                    <li><a href="<?= BASE_URL ?>/loja">Loja</a></li>
+                    <li><a href="<?= BASE_URL ?>/logout" style="font-weight:bold; color:var(--orange);">Sair</a></li>
+                <?php else: ?>
+                    <li><a href="<?= BASE_URL ?>/login" style="font-weight:bold; color:var(--purple);">Entrar</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
 

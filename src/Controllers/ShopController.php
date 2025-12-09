@@ -4,60 +4,125 @@ namespace App\Controllers;
 use App\Mappers\ProductMapper;
 use App\Services\CartService;
 use Core\SessionManager;
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Mappers\OrderMapper;
 
 class ShopController {
 
+    // Renderiza a View Principal
     public function index() {
         if (!SessionManager::isLogged()) {
-            header('Location: /login');
+            header('Location: ' . BASE_URL . '/login');
+            exit;
+        }
+        $userName = SessionManager::get('user_name');
+        require __DIR__ . '/../../views/shop.php';
+    }
+
+    // API: Retorna lista de produtos em JSON
+    public function apiList() {
+        $mapper = new ProductMapper();
+        $products = $mapper->findAll();
+        
+        // Ajuste para expor propriedades protegidas como array público
+        $data = array_map(function($p) {
+            return [
+                'id' => $p->id, // Usando __get magico
+                'name' => $p->name,
+                'price' => $p->price,
+                'description' => $p->description ?? '',
+                'image_url' => $p->image_url ?? ''
+            ];
+        }, $products);
+
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        exit;
+    }
+
+    // API: Retorna carrinho atual
+    public function apiGetCart() {
+        $cartService = new CartService();
+        header('Content-Type: application/json');
+        echo json_encode($cartService->getItems());
+        exit;
+    }
+
+    // API: Adicionar item
+    public function apiAdd() {
+        $id = $_GET['id'] ?? null;
+        if (!$id) {
+            echo json_encode(['success' => false, 'message' => 'ID inválido']);
             exit;
         }
 
         $mapper = new ProductMapper();
-        $products = $mapper->findAll();
-        
-        echo "<h1>Loja da Academia</h1>";
-        foreach($products as $p) {
-
-            echo "<div style='border:1px solid #ccc; padding:10px; margin:5px;'>";
-            echo "<h3>{$p->name}</h3>";
-            echo "<p>R$ {$p->price}</p>";
-            echo "<a href='/loja/add?id={$p->id}'>Adicionar ao Carrinho</a>";
-            echo "</div>";
-        }
-        echo "<br><a href='/carrinho'>Ver Carrinho</a>";
-    }
-
-    public function addToCart() {
-        $id = $_GET['id'] ?? null;
-        if (!$id) die("Produto inválido");
-
-        $mapper = new ProductMapper();
-        $product = $mapper->find($id);
+        $product = $mapper->find((int)$id);
 
         if ($product) {
             $cartService = new CartService();
-            $cartService->add($product->id, 1, $product->price, $product->name);
+            // Garante que o ID seja inteiro para consistência na sessão
+            $cartService->add((int)$product->id, 1, (float)$product->price, $product->name);
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Produto não encontrado']);
         }
-
-        header('Location: /loja');
+        exit;
     }
 
-    public function viewCart() {
+    // API: Remover item (diminuir qtd)
+    public function apiRemove() {
+        $id = $_GET['id'] ?? null;
+        if (!$id) {
+            echo json_encode(['success' => false]);
+            exit;
+        }
+        
+        $cartService = new CartService();
+        $cartService->removeOne((int)$id);
+        
+        echo json_encode(['success' => true]);
+        exit;
+    }
+
+    // API: Checkout (Simples)
+    public function apiCheckout() {
+        if (!SessionManager::isLogged()) {
+            echo json_encode(['success' => false, 'message' => 'Login required']);
+            exit;
+        }
+
         $cartService = new CartService();
         $items = $cartService->getItems();
-        $total = $cartService->getTotal();
-
-        echo "<h1>Seu Carrinho</h1>";
+        
         if (empty($items)) {
-            echo "<p>Vazio, frango!</p>";
-        } else {
-            foreach($items as $item) {
-                echo "<li>{$item['qty']}x {$item['name']} - R$ " . ($item['price'] * $item['qty']) . "</li>";
-            }
-            echo "<h3>Total: R$ $total</h3>";
-            echo "<button>Finalizar Compra (Checkout)</button>"; 
+            echo json_encode(['success' => false, 'message' => 'Carrinho vazio']);
+            exit;
         }
-        echo "<br><a href='/loja'>Voltar</a>";
+
+        try {
+            $total = $cartService->getTotal();
+            $studentId = SessionManager::get('user_id');
+
+            $order = new Order($studentId, $total);
+            
+            foreach ($items as $item) {
+                // Assuming OrderItem constructor: product_id, quantity, unit_price
+                $orderItem = new OrderItem($item['id'], $item['qty'], $item['price']);
+                $order->addItem($orderItem);
+            }
+
+            $orderMapper = new OrderMapper();
+            $orderMapper->save($order);
+            
+            $cartService->clear();
+
+            echo json_encode(['success' => true, 'orderId' => $order->id]);
+
+        } catch (\Exception $e) {
+            echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+        }
+        exit;
     }
 }
