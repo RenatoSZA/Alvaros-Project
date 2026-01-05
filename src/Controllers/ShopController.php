@@ -10,7 +10,6 @@ use App\Mappers\OrderMapper;
 
 class ShopController {
 
-    // Renderiza a View Principal
     public function index() {
         if (!SessionManager::isLogged()) {
             header('Location: ' . BASE_URL . '/login');
@@ -20,19 +19,17 @@ class ShopController {
         require __DIR__ . '/../../views/shop.php';
     }
 
-    // API: Retorna lista de produtos em JSON
     public function apiList() {
         $mapper = new ProductMapper();
         $products = $mapper->findAll();
         
-        // Ajuste para expor propriedades protegidas como array público
         $data = array_map(function($p) {
             return [
-                'id' => $p->id, // Usando __get magico
+                'id' => $p->id,
                 'name' => $p->name,
                 'price' => $p->price,
-                'description' => $p->description ?? '',
-                'image_url' => $p->image_url ?? ''
+                'description' => $p->description,
+                'image_url' => $p->image_url
             ];
         }, $products);
 
@@ -41,87 +38,60 @@ class ShopController {
         exit;
     }
 
-    // API: Retorna carrinho atual
     public function apiGetCart() {
-        $cartService = new CartService();
+        $service = new CartService();
         header('Content-Type: application/json');
-        echo json_encode($cartService->getItems());
+        echo json_encode($service->getItems());
         exit;
     }
 
-    // API: Adicionar item
     public function apiAdd() {
         $id = $_GET['id'] ?? null;
-        if (!$id) {
-            echo json_encode(['success' => false, 'message' => 'ID inválido']);
-            exit;
-        }
-
         $mapper = new ProductMapper();
         $product = $mapper->find((int)$id);
 
         if ($product) {
-            $cartService = new CartService();
-            // Garante que o ID seja inteiro para consistência na sessão
-            $cartService->add((int)$product->id, 1, (float)$product->price, $product->name);
+            $service = new CartService();
+            $service->add((int)$product->id, 1, (float)$product->price, $product->name);
             echo json_encode(['success' => true]);
         } else {
-            echo json_encode(['success' => false, 'message' => 'Produto não encontrado']);
+            echo json_encode(['success' => false]);
         }
         exit;
     }
 
-    // API: Remover item (diminuir qtd)
     public function apiRemove() {
         $id = $_GET['id'] ?? null;
-        if (!$id) {
-            echo json_encode(['success' => false]);
-            exit;
-        }
-        
-        $cartService = new CartService();
-        $cartService->removeOne((int)$id);
-        
+        $service = new CartService();
+        $service->removeOne((int)$id);
         echo json_encode(['success' => true]);
         exit;
     }
 
-    // API: Checkout (Simples)
     public function apiCheckout() {
-        if (!SessionManager::isLogged()) {
-            echo json_encode(['success' => false, 'message' => 'Login required']);
-            exit;
-        }
+        if (!SessionManager::isLogged()) exit;
 
-        $cartService = new CartService();
-        $items = $cartService->getItems();
+        $service = new CartService();
+        $items = $service->getItems();
         
         if (empty($items)) {
-            echo json_encode(['success' => false, 'message' => 'Carrinho vazio']);
+            echo json_encode(['success' => false]);
             exit;
         }
 
         try {
-            $total = $cartService->getTotal();
-            $studentId = SessionManager::get('user_id');
-
-            $order = new Order($studentId, $total);
-            
+            $order = new Order(SessionManager::get('user_id'), $service->getTotal());
             foreach ($items as $item) {
-                // Assuming OrderItem constructor: product_id, quantity, unit_price
-                $orderItem = new OrderItem($item['id'], $item['qty'], $item['price']);
-                $order->addItem($orderItem);
+                $order->addItem(new OrderItem($item['id'], $item['qty'], $item['price']));
             }
 
-            $orderMapper = new OrderMapper();
-            $orderMapper->save($order);
-            
-            $cartService->clear();
+            $mapper = new OrderMapper();
+            $mapper->save($order);
+            $service->clear();
 
-            echo json_encode(['success' => true, 'orderId' => $order->id]);
-
+            echo json_encode(['success' => true]);
         } catch (\Exception $e) {
-            echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+            echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
         exit;
     }

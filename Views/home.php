@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/style.css">
 </head>
 
@@ -21,7 +21,7 @@
                 <li><a href="#">Menu</a></li>
                 <li><a href="#">Planos</a></li>
                 <li><a href="#">Unidades</a></li>
-                
+
                 <?php if (\Core\SessionManager::isLogged()): ?>
                     <li><a href="<?= BASE_URL ?>/dashboard">Dashboard</a></li>
                     <li><a href="<?= BASE_URL ?>/loja">Loja</a></li>
@@ -67,25 +67,50 @@
         <section class="plans-bg">
             <div class="plans container">
                 <h2>Transforme sua rotina com <span class="highlight-pink">o plano perfeito pra você.</span></h2>
+
                 <div class="plans-grid">
+
                     <div class="plan-card">
                         <h3>PLANO LUMINOUS (Premium)</h3>
                         <ul>
-                            <li>✓ Acesso ilimitado</li>
-                            <li>✓ Aulas exclusivas</li>
+                            <li>✓ Acesso ilimitado a todos os módulos</li>
+                            <li>✓ Aulas exclusivas e conteúdos antecipados</li>
+                            <li>✓ Assistente inteligente avançado</li>
+                            <li>✓ Relatórios semanais personalizados</li>
+                            <li>✓ Suporte prioritário 24/7</li>
+                            <li>✓ Atualizações premium automáticas</li>
                         </ul>
                         <div class="price">R$ 169,90<span class="period">/mês</span></div>
                         <a href="#" class="btn btn-purple">Assine já</a>
                     </div>
-                     <div class="plan-card">
+
+                    <div class="plan-card">
                         <h3>PLANO BASE</h3>
-                        <ul><li>✓ Acesso regular</li></ul>
+                        <ul>
+                            <li>✓ Acesso regular a aulas e ferramentas principais</li>
+                            <li>✓ Suporte básico</li>
+                            <li>✓ Relatórios mensais simples</li>
+                        </ul>
                         <div class="price">R$ 99,90<span class="period">/mês</span></div>
                         <a href="#" class="btn btn-purple">Assine já</a>
                     </div>
+
+                    <div class="plan-card">
+                        <h3>PLANO INTERMEDIÁRIO</h3>
+                        <ul>
+                            <li>✓ Acesso completo aos módulos essenciais</li>
+                            <li>✓ Assistente inteligente padrão</li>
+                            <li>✓ Planejamentos automáticos semanais</li>
+                            <li>✓ Aulas bônus mensais</li>
+                        </ul>
+                        <div class="price">R$ 129,90<span class="period">/mês</span></div>
+                        <a href="#" class="btn btn-purple">Assine já</a>
+                    </div>
+
                 </div>
             </div>
         </section>
+
 
         <section class="units container">
             <h2>Descubra a Luminous Gym</h2>
@@ -139,14 +164,63 @@
             </div>
         </section>
 
+        <!-- Rodapé -->
         <footer class="footer-bg">
-             <div class="footer container">
+            <div class="footer container">
                 <div class="footer-column">
-                    <div class="logo">Luminous Gym</div>
-                    <p>Rua Exemplo, 123 - SP</p>
+                    <div class="logo">Luminous Gym </div>
+                    <p>Rua Exemplo, 123<br>Bairro, Cidade - EST<br>CEP 00000-000</p>
+                    <p>Luminous Gym Academia <br>CNPJ: 00.000.000/0001-00</p>
                 </div>
+                <div class="footer-column">
+                    <h4>Conheça</h4>
+                    <ul>
+                        <li><a href="#">Sobre-nós</a></li>
+                        <li><a href="#">Nossa história</a></li>
+                        <li><a href="#">Blog Luminous</a></li>
+                        <li><a href="#">Contato</a></li>
+
+                    </ul>
                 </div>
+                <div class="footer-column">
+                    <h4>Certificações</h4>
+                    <ul>
+                        <li><a href="#">ISO 9001</a></li>
+                        <li><a href="#">Prêmio Qualidade</a></li>
+                        <li><a href="#">Selo Fitness BR</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Planos</h4>
+                    <ul>
+                        <li><a href="#">Plano Luminous</a></li>
+                        <li><a href="#">Plano Light</a></li>
+                        <li><a href="#">Plano Corporativo</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Unidades</h4>
+                    <ul>
+                        <li><a href="#">Augusta</a></li>
+                        <li><a href="#">Oscar Freire</a></li>
+                        <li><a href="#">Unidade A</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Redes sociais</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">TikTok</a></li>
+                        <li><a href="#">You tube</a></li>
+                        <li><a href="#">X</a></li>
+                    </ul>
+                </div>
+            </div>
         </footer>
 
 </body>
+
 </html>

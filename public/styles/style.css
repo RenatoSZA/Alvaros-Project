@@ -208,7 +208,7 @@ body {
     margin-bottom: 3rem;
 }
 
-.highlight-pink { /* Renomeado para .highlight */
+.highlight-pink { 
     color: var(--light-purple);
 }
 
@@ -217,6 +217,7 @@ body {
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-bottom: 3rem;
+    align-items: stretch;
 }
 
 .plan-card {
@@ -226,11 +227,21 @@ body {
     padding: 2.5rem;
     text-align: left;
     transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
 }
 
 .plan-card:hover {
     transform: scale(1.03);
     box-shadow: 0 0 25px rgba(157, 78, 221, 0.3);
+}
+
+
+.plan-card a {
+    margin-top: auto; 
+    align-self: flex-start; 
 }
 
 .plan-card h3 {
@@ -242,6 +253,7 @@ body {
 .plan-card ul {
     list-style: none;
     margin-bottom: 1.5rem;
+    flex-grow: 1; /* Ocupa o espaço disponível para empurrar o preço/botão se necessário */
 }
 
 .plan-card li {
@@ -453,7 +465,7 @@ body {
 
 /* --- Rodapé --- */
 .footer-bg {
-    background-color: var(--black);
+    background-color: var(--dark-gray);
     padding: 4rem 0;
     color: var(--gray);
     border-top: 1px solid var(--dark-gray);
